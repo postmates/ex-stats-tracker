@@ -2,7 +2,7 @@ defmodule ExStatsTracker.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :stats_tracker,
+    [app: :ex_stats_tracker,
      version: "0.1.0",
      elixir: "~> 1.3",
      description: description(),
@@ -43,7 +43,7 @@ defmodule ExStatsTracker.Mixfile do
   defp package do
     [
       maintainers: ["Geoffrey Hayes", "Fahim Zahur"],
-      licenses: ["MIT"],
+      licenses: ["BSD 3-Clause"],
       links: %{"GitHub" => "https://github.com/postmates/ex-stats-tracker"}
     ]
   end
