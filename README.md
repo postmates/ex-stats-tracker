@@ -36,6 +36,7 @@ children = IO.inspect([
 
 Configure ex_stats_tracker in config:
 
+```elixir
 use Mix.Config
 
 config :ex_stats_tracker,
@@ -44,6 +45,7 @@ config :ex_stats_tracker,
        prefix: "your_prefix"
        flush_interval: 10000
        chunk_size: 20
+```
 
 The defaults are:
 
@@ -51,7 +53,7 @@ host: 127.0.0.1
 port: 8125
 prefix: nil
 flush_interval: 15000
-chunk_size: 25
+chunk_size: 25 
 
 ## Usage
 
