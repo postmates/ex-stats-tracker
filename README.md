@@ -49,11 +49,11 @@ config :ex_stats_tracker,
 
 The defaults are:
 
-host: 127.0.0.1
-port: 8125
-prefix: nil
-flush_interval: 15000
-chunk_size: 25 
+* host: 127.0.0.1
+* port: 8125
+* prefix: nil
+* flush_interval: 15000
+* chunk_size: 25 
 
 ## Usage
 
