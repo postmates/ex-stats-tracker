@@ -26,10 +26,10 @@ end
 
 ```elixir
 children = IO.inspect([
-      # Start the endpoint when the application starts
-      supervisor(YourApplication.Endpoint, []),
-      worker(ExStatsTracker, [[prefix: "your_prefix"]], [name: ExStatsTracker])
-    ])
+  # Start the endpoint when the application starts
+  supervisor(YourApplication.Endpoint, []),
+  worker(ExStatsTracker, [[prefix: "your_prefix"]], [name: ExStatsTracker])
+])
 ```
 
 ## Configuration
@@ -53,7 +53,7 @@ The defaults are:
 * port: 8125
 * prefix: nil
 * flush_interval: 15000
-* chunk_size: 25 
+* chunk_size: 25
 
 ## Usage
 
