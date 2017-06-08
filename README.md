@@ -56,17 +56,17 @@ chunk_size: 25
 ## Usage
 
 ```elixir
-iex> StatsTracker.counter(your_key, 1)
+iex> ExStatsTracker.counter(your_key, 1)
 
-iex> StatsTracker.increment(your_key)
+iex> ExStatsTracker.increment(your_key)
 
-iex> StatsTracker.gauge(your_key)
+iex> ExStatsTracker.gauge(your_key)
 
-iex> StatsTracker.timing(your_metric, 1)
+iex> ExStatsTracker.timing(your_metric, 1)
 
-iex> StatsTracker.histogram(your_metric, 1)
+iex> ExStatsTracker.histogram(your_metric, 1)
 
-iex> StatsTracker.meter(your_metric, 1)
+iex> ExStatsTracker.meter(your_metric, 1)
 ```
 
 ## Dependencies
