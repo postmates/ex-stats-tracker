@@ -5,36 +5,28 @@ defmodule ExStatsTrackerTest do
     test "override host through options" do
       host = :some_host
       options = [host: host]
-
       {:ok, _pid} = ExStatsTracker.start_link(options)
-
       assert state().host === host
     end
 
     test "override port through options" do
       port = :some_port
       options = [port: port]
-
       {:ok, _pid} = ExStatsTracker.start_link(options)
-
       assert state().port === port
     end
 
     test "override prefix through options" do
       prefix = :some_prefix
       options = [prefix: prefix]
-
       {:ok, _pid} = ExStatsTracker.start_link(options)
-
       assert state().prefix === prefix
     end
 
     test "override chunk_size through options" do
       chunk_size = :chunk_size
       options = [chunk_size: chunk_size]
-
       {:ok, _pid} = ExStatsTracker.start_link(options)
-
       assert state().chunk_size === chunk_size
     end
   end
