@@ -3,8 +3,6 @@ Statsd Client for Elixir
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
-
   1. Add `ex-stats-tracker` to your list of dependencies in `mix.exs`:
 
 ```elixir
@@ -17,19 +15,8 @@ end
 
 ```elixir
 def application do
-  [applications: [:ex_stats_tracker]]
+  [extra_applications: [:ex_stats_tracker]]
 end
-```
-
-  3. Add the ExStatsTracker worker to the list of children processes in
-  your application start method:
-
-```elixir
-children = IO.inspect([
-  # Start the endpoint when the application starts
-  supervisor(YourApplication.Endpoint, []),
-  worker(ExStatsTracker, [[prefix: "your_prefix"]], [name: ExStatsTracker])
-])
 ```
 
 ## Configuration
@@ -59,17 +46,9 @@ The defaults are:
 
 ```elixir
 iex> ExStatsTracker.counter(your_key, 1)
-
 iex> ExStatsTracker.increment(your_key)
-
 iex> ExStatsTracker.gauge(your_key)
-
 iex> ExStatsTracker.timing(your_metric, 1)
-
 iex> ExStatsTracker.histogram(your_metric, 1)
-
 iex> ExStatsTracker.meter(your_metric, 1)
 ```
-
-## Dependencies
-Your project must include statsd.

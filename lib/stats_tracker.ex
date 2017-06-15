@@ -21,8 +21,6 @@ defmodule ExStatsTracker do
         Keyword.get(opts, :host, @default_host)),
       port: Application.get_env(:ex_stats_tracker, :port,
         Keyword.get(opts, :port, @default_port)),
-      prefix: Application.get_env(:ex_stats_tracker, :prefix,
-        Keyword.get(opts, :prefix, @default_prefix)),
       chunk_size: Application.get_env(:ex_stats_tracker, :chunk_size,
         Keyword.get(opts, :chunk_size, @default_chunk_size)),
     }
@@ -40,14 +38,8 @@ defmodule ExStatsTracker do
     GenServer.start_link(__MODULE__, opts, [name: __MODULE__])
   end
 
-  def handle_cast(msg={type, key, val}, state) do
-    prefixed_msg = case state.prefix do
-      nil -> msg
-      prefix -> {type, prefix <> "." <> key, val}
-    end
-
-    new_state = %{ state | msgs: [ prefixed_msg | state.msgs ] }
-
+  def handle_cast(msg, state) do
+    new_state = %{ state | msgs: [ msg | state.msgs ] }
     {:noreply, new_state}
   end
 
@@ -74,8 +66,15 @@ defmodule ExStatsTracker do
 
   defp command(type, key, val) do
     # TODO(hayesgm): Fail if key > 100 characters
+    GenServer.cast(__MODULE__, update_msg_with_prefix({type, key, val}))
+  end
 
-    GenServer.cast(__MODULE__, {type, key, val})
+  defp update_msg_with_prefix(msg={type, key, value}) do
+    prefix = Application.get_env(:ex_stats_tracker, :prefix, @default_prefix)
+    case prefix do
+      nil -> msg
+      prefix -> {type, prefix <> "." <> key, value}
+    end
   end
 
   # Public statsd commands

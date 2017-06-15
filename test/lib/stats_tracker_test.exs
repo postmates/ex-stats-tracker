@@ -16,13 +16,6 @@ defmodule ExStatsTrackerTest do
       assert state().port === port
     end
 
-    test "override prefix through options" do
-      prefix = :some_prefix
-      options = [prefix: prefix]
-      {:ok, _pid} = ExStatsTracker.start_link(options)
-      assert state().prefix === prefix
-    end
-
     test "override chunk_size through options" do
       chunk_size = :chunk_size
       options = [chunk_size: chunk_size]
@@ -39,37 +32,37 @@ defmodule ExStatsTrackerTest do
 
     test "counter" do
       :ok = 99 |> ExStatsTracker.counter("items")
-      assert sent() == [{:counter, "items", 99}]
+      assert sent() == [{:counter, "test_prefix.items", 99}]
     end
 
     test "increment" do
       :ok = ExStatsTracker.increment("items")
-      assert sent() == [{:counter, "items", 1}]
+      assert sent() == [{:counter, "test_prefix.items", 1}]
     end
 
     test "decrement" do
       :ok = ExStatsTracker.decrement("items")
-      assert sent() == [{:counter, "items", -1}]
+      assert sent() == [{:counter, "test_prefix.items", -1}]
     end
 
     test "gauge" do
       :ok = 99 |> ExStatsTracker.gauge("items")
-      assert sent() == [{:gauge, "items", 99}]
+      assert sent() == [{:gauge, "test_prefix.items", 99}]
     end
 
     test "timing" do
       :ok = 99 |> ExStatsTracker.timing("items")
-      assert sent() == [{:timer, "items", 99}]
+      assert sent() == [{:timer, "test_prefix.items", 99}]
     end
 
     test "histogram" do
       :ok = 99 |> ExStatsTracker.histogram("items")
-      assert sent() == [{:histogram, "items", 99}]
+      assert sent() == [{:histogram, "test_prefix.items", 99}]
     end
 
     test "meter" do
       :ok = 99 |> ExStatsTracker.meter("items")
-      assert sent() == [{:meter, "items", 99}]
+      assert sent() == [{:meter, "test_prefix.items", 99}]
     end
 
     test "flush" do
