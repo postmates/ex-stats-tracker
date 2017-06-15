@@ -52,8 +52,7 @@ defmodule ExStatsTracker do
       chunks = Enum.chunk(state.msgs, state.chunk_size, state.chunk_size, [])
 
       Enum.each(chunks, fn msgs ->
-        statsd_lines = Enum.map(msgs, &build_statsd_line/1)
-        :gen_udp.send(socket, state.host, state.port, statsd_lines)
+        :gen_udp.send(socket, state.host, state.port, msgs)
       end)
     end
 
@@ -66,7 +65,11 @@ defmodule ExStatsTracker do
 
   defp command(type, key, val) do
     # TODO(hayesgm): Fail if key > 100 characters
-    GenServer.cast(__MODULE__, update_msg_with_prefix({type, key, val}))
+    GenServer.cast(__MODULE__,
+      {type, key, val}
+      |> update_msg_with_prefix
+      |> build_statsd_line
+    )
   end
 
   defp update_msg_with_prefix(msg={type, key, value}) do

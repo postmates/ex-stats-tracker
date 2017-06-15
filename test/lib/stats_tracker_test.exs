@@ -31,38 +31,38 @@ defmodule ExStatsTrackerTest do
     end
 
     test "counter" do
-      :ok = 99 |> ExStatsTracker.counter("items")
-      assert sent() == [{:counter, "test_prefix.items", 99}]
+      :ok = 99 |> ExStatsTracker.counter("counter")
+      assert sent() == ["test_prefix.counter:99|c\n"]
     end
 
     test "increment" do
-      :ok = ExStatsTracker.increment("items")
-      assert sent() == [{:counter, "test_prefix.items", 1}]
+      :ok = ExStatsTracker.increment("increment")
+      assert sent() == ["test_prefix.increment:1|c\n"]
     end
 
     test "decrement" do
-      :ok = ExStatsTracker.decrement("items")
-      assert sent() == [{:counter, "test_prefix.items", -1}]
+      :ok = ExStatsTracker.decrement("decrement")
+      assert sent() == ["test_prefix.decrement:-1|c\n"]
     end
 
     test "gauge" do
-      :ok = 99 |> ExStatsTracker.gauge("items")
-      assert sent() == [{:gauge, "test_prefix.items", 99}]
+      :ok = 99 |> ExStatsTracker.gauge("gauge")
+      assert sent() == ["test_prefix.gauge:99|g\n"]
     end
 
     test "timing" do
-      :ok = 99 |> ExStatsTracker.timing("items")
-      assert sent() == [{:timer, "test_prefix.items", 99}]
+      :ok = 99 |> ExStatsTracker.timing("timing")
+      assert sent() == ["test_prefix.timing:99|ms\n"]
     end
 
     test "histogram" do
-      :ok = 99 |> ExStatsTracker.histogram("items")
-      assert sent() == [{:histogram, "test_prefix.items", 99}]
+      :ok = 99 |> ExStatsTracker.histogram("histogram")
+      assert sent() == ["test_prefix.histogram:99|h\n"]
     end
 
     test "meter" do
-      :ok = 99 |> ExStatsTracker.meter("items")
-      assert sent() == [{:meter, "test_prefix.items", 99}]
+      :ok = 99 |> ExStatsTracker.meter("meter")
+      assert sent() == ["test_prefix.meter:99|m\n"]
     end
 
     test "flush" do
