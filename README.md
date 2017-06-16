@@ -1,5 +1,5 @@
 # ex-stats-tracker
-Statsd Client for Elixir
+Statsd Client for Elixir. ExStatsTracker is a process based statsd client that supports batch stat flushes to avoid fd exhaustion.
 
 ## Installation
 
