@@ -3,8 +3,8 @@ defmodule ExStatsTracker.Mixfile do
 
   def project do
     [app: :ex_stats_tracker,
-     version: "0.1.1",
-     elixir: "~> 1.3",
+     version: "0.1.2",
+     elixir: "~> 1.4",
      description: description(),
      package: package(),
      build_embedded: Mix.env == :prod,
