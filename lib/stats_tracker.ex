@@ -19,21 +19,21 @@ defmodule ExStatsTracker do
     state = %{
       msgs: [],
       host: Application.get_env(
-          :ex_stats_tracker,
-          :host,
-          Keyword.get(opts, :host, @default_host)
-        )
-        |> String.to_atom,
+        :ex_stats_tracker,
+        :host,
+        Keyword.get(opts, :host, @default_host)
+      )
+      |> String.to_atom,
       port: Application.get_env(
-          :ex_stats_tracker,
-          :port,
-          Keyword.get(opts, :port, @default_port)
-        ),
+        :ex_stats_tracker,
+        :port,
+        Keyword.get(opts, :port, @default_port)
+      ),
       chunk_size: Application.get_env(
-          :ex_stats_tracker,
-          :chunk_size,
-          Keyword.get(opts, :chunk_size, @default_chunk_size)
-        ),
+        :ex_stats_tracker,
+        :chunk_size,
+        Keyword.get(opts, :chunk_size, @default_chunk_size)
+      ),
     }
 
     flush_interval = Application.get_env(
