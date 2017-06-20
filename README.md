@@ -56,7 +56,7 @@ iex> ExStatsTracker.histogram(your_metric, 1)
 iex> ExStatsTracker.meter(your_metric, 1)
 ```
 
-##Documentation
+## Documentation
 
 mix docs
 open docs/index.html
