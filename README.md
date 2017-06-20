@@ -7,7 +7,7 @@ Statsd Client for Elixir. ExStatsTracker is a process based statsd client that s
 
 ```elixir
 def deps do
-  [{:ex_stats_tracker, "~> 0.1.0"}]
+  [{:ex_stats_tracker, "~> 0.1.1"}]
 end
 ```
 
