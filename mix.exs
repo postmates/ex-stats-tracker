@@ -3,7 +3,7 @@ defmodule ExStatsTracker.Mixfile do
 
   def project do
     [app: :ex_stats_tracker,
-     version: "0.1.0",
+     version: "0.1.1",
      elixir: "~> 1.3",
      description: description(),
      package: package(),
@@ -16,7 +16,8 @@ defmodule ExStatsTracker.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [extra_applications: [:logger]]
+    [extra_applications: [:logger],
+     mod: {ExStatsTracker.Application, []}]
   end
 
   # Dependencies can be Hex packages:
