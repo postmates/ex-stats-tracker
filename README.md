@@ -59,4 +59,5 @@ iex> ExStatsTracker.meter(your_metric, 1)
 ## Documentation
 
 mix docs
+
 open docs/index.html
