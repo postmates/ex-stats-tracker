@@ -1,5 +1,6 @@
 defmodule ExStatsTracker do
   use GenServer
+  require Logger
 
   # config options:
   #   host (default: {127,0,0,1}: Host address of Statsd
@@ -17,16 +18,29 @@ defmodule ExStatsTracker do
   def init(opts \\ []) do
     state = %{
       msgs: [],
-      host: Application.get_env(:ex_stats_tracker, :host,
-        Keyword.get(opts, :host, @default_host)),
-      port: Application.get_env(:ex_stats_tracker, :port,
-        Keyword.get(opts, :port, @default_port)),
-      chunk_size: Application.get_env(:ex_stats_tracker, :chunk_size,
-        Keyword.get(opts, :chunk_size, @default_chunk_size)),
+      host: Application.get_env(
+        :ex_stats_tracker,
+        :host,
+        Keyword.get(opts, :host, @default_host)
+      )
+      |> String.to_atom,
+      port: Application.get_env(
+        :ex_stats_tracker,
+        :port,
+        Keyword.get(opts, :port, @default_port)
+      ),
+      chunk_size: Application.get_env(
+        :ex_stats_tracker,
+        :chunk_size,
+        Keyword.get(opts, :chunk_size, @default_chunk_size)
+      ),
     }
 
-    flush_interval = Application.get_env(:ex_stats_tracker, :flush_interval,
-      Keyword.get(opts, :flush_interval, @default_flush_interval))
+    flush_interval = Application.get_env(
+      :ex_stats_tracker,
+      :flush_interval,
+      Keyword.get(opts, :flush_interval, @default_flush_interval)
+    )
 
     # TODO(hayesgm): kill time_ref on death
     {:ok, _time_ref} = :timer.apply_interval(flush_interval, __MODULE__, :flush, [])
