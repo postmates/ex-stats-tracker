@@ -1,4 +1,7 @@
 # ex-stats-tracker
+
+[![hex.pm version](https://img.shields.io/hexpm/v/ex_stats_tracker.svg)](https://hex.pm/packages/ex_stats_tracker)
+
 Statsd Client for Elixir. ExStatsTracker is a process based statsd client that supports batch stat flushes to avoid fd exhaustion.
 
 ## Installation
