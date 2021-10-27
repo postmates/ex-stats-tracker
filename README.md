@@ -1,3 +1,6 @@
+# Now Archived and Forked
+_ex-stats-tracker_ will not be maintained in this repository going forward. Please use, create issues on, and make PRs to the fork of _ex-stats-tracker_ located [here](https://github.com/mager/ex-stats-tracker).
+
 # ex-stats-tracker
 
 [![hex.pm version](https://img.shields.io/hexpm/v/ex_stats_tracker.svg)](https://hex.pm/packages/ex_stats_tracker)
